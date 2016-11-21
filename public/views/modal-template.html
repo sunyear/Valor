@@ -1,0 +1,127 @@
+<div class="modal-header">
+    <h3 class="modal-title" id="modal-title">Resultados - LOTE <strong style="color:blue">{{$ctrl.items.nro_lote}}</strong></h3>
+</div>
+<div class="modal-body" id="modal-body">
+    <div class="panel panel-primary">
+            <div class="panel-body">
+
+                <uib-accordion close-others="true">
+                    <div uib-accordion-group class="panel " ng-class="($ctrl.items.err_fec_const)?'panel-danger':($ctrl.items.cant_err_fec_const>0)?'panel-warning':'panel-success'" is-disabled="(!$ctrl.items.err_fec_const && $ctrl.items.cant_err_fec_const == 0)">
+                      <uib-accordion-heading style="cursor:pointer">
+                        Fecha Constatacion <h5 ng-show="$ctrl.items.cant_err_fec_const>0" class="label label-danger">{{$ctrl.items.cant_err_fec_const}} errores ({{ $ctrl.items.porc_err_fec_const}}%)</h5> <i ng-style="{'color':($ctrl.items.err_fec_const)?'red':($ctrl.items.cant_err_fec_const>0)?'orange':'green'}" class="glyphicon pull-right" ng-class="($ctrl.items.err_fec_const)?'glyphicon-remove':($ctrl.items.cant_err_fec_const>0)?'glyphicon-exclamation-sign':'glyphicon-ok'"></i>
+                      </uib-accordion-heading>
+                            
+
+                            <ul class="list-group" ng-repeat=" err_reg in $ctrl.items.arr_const track by $index">
+                                <li class="list-group-item">
+                                    <span class="badge">{{err_reg.nroActa}}</span>
+                                        Nro ACTA 
+                                 </li>
+                                <li class="list-group-item">
+                                    <span class="badge">{{err_reg.fec_const| amDateFormat : 'DD-MM-YYYY'}}</span>
+                                        Fecha Constatacion 
+                                 </li>
+                                 <li class="list-group-item">
+                                    <span class="badge">{{$ctrl.items.fecha_const_calc | amDateFormat : 'DD-MM-YYYY'}}</span>
+                                        Fecha lote (-60 dias) 
+                                 </li>
+                            </ul>
+                    </div>
+                    <div uib-accordion-group class="panel " ng-class="($ctrl.items.err_fec_venc)?'panel-danger':($ctrl.items.cant_err_fec_venc>0)?'panel-warning':'panel-success'" is-disabled="(!$ctrl.items.err_fec_venc && $ctrl.items.cant_err_fec_venc == 0)">
+                      <uib-accordion-heading>
+                        Fecha vencimiento <h5 ng-show="$ctrl.items.cant_err_fec_venc>0" class="label label-danger">{{$ctrl.items.cant_err_fec_venc}} errores ({{ $ctrl.items.porc_err_fec_venc}}%)</h5><i ng-style="{'color':($ctrl.items.err_fec_venc)?'red':($ctrl.items.cant_err_fec_venc>0)?'orange':'green'}" class="glyphicon pull-right" ng-class="($ctrl.items.err_fec_venc)?'glyphicon-remove':($ctrl.items.cant_err_fec_venc>0)?'glyphicon-exclamation-sign':'glyphicon-ok'"></i>
+                      </uib-accordion-heading>
+                            <ul class="list-group" ng-repeat=" err_reg in $ctrl.items.arr_venc track by $index">
+                                <li class="list-group-item">
+                                    <span class="badge">{{err_reg.nroActa}}</span>
+                                        Nro ACTA 
+                                 </li>
+                                <li class="list-group-item">
+                                    <span class="badge">{{err_reg.fec_venc | amDateFormat : 'DD-MM-YYYY'}}</span>
+                                        Fecha Vencmiento (CSV) 
+                                 </li>
+                                 <li class="list-group-item">
+                                    <span class="badge">{{$ctrl.items.fecha_venc_calc | amDateFormat : 'DD-MM-YYYY'}}</span>
+                                        Fecha vencmiento (+45 dias) 
+                                 </li>
+                            </ul>
+                    </div>
+                    <div uib-accordion-group class="panel " ng-class="($ctrl.items.err_cod_bar)?'panel-danger':($ctrl.items.cant_err_cod_bar>0)?'panel-warning':'panel-success'" is-disabled="(!$ctrl.items.err_cod_bar && $ctrl.items.cant_err_cod_bar == 0)">
+                      <uib-accordion-heading>
+                         Codigo de barras <h5 ng-show="$ctrl.items.cant_err_cod_bar>0" class="label label-danger">{{$ctrl.items.cant_err_cod_bar}} errores ({{ $ctrl.items.porc_err_cod_bar}}%)</h5><i ng-style="{'color':($ctrl.items.err_cod_bar)?'red':($ctrl.items.cant_err_cod_bar>0)?'orange':'green'}" class="glyphicon pull-right" ng-class="($ctrl.items.err_cod_bar)?'glyphicon-remove':($ctrl.items.cant_err_cod_bar>0)?'glyphicon-exclamation-sign':'glyphicon-ok'"></i>
+                      </uib-accordion-heading>
+                            <ul class="list-group" ng-repeat=" err_reg in $ctrl.items.arr_cod_bar track by $index">
+                                <li class="list-group-item">
+                                    <span class="badge">{{err_reg.nroActa}}</span>
+                                        Nro ACTA 
+                                 </li>
+                                <li class="list-group-item">
+                                    <span class="badge">{{err_reg.cod_barras}}</span>
+                                        CODIGO BARRAS 
+                                 </li>
+                                 <li class="list-group-item">
+                                    <span class="badge">{{err_reg.fec_venc}}</span>
+                                        FECHA VENCIMIENTO 
+                                 </li>
+                            </ul>
+                    </div>
+                    <div uib-accordion-group class="panel " ng-class="($ctrl.items.err_tol_vel)?'panel-danger':($ctrl.items.cant_err_tol_vel>0)?'panel-warning':'panel-success'" is-disabled="(!$ctrl.items.err_tol_vel && $ctrl.items.cant_err_tol_vel == 0)">
+                      <uib-accordion-heading>
+                        Tolerancia velocidad maxima <h5 ng-show="$ctrl.items.cant_err_tol_vel>0" class="label label-danger">{{$ctrl.items.cant_err_tol_vel}} errores ({{ $ctrl.items.porc_err_tol_vel}}%)</h5><i ng-style="{'color':($ctrl.items.err_tol_vel)?'red':($ctrl.items.cant_err_tol_vel>0)?'orange':'green'}" class="glyphicon pull-right" ng-class="($ctrl.items.err_tol_vel)?'glyphicon-remove':($ctrl.items.cant_err_tol_vel>0)?'glyphicon-exclamation-sign':'glyphicon-ok'"></i>
+                      </uib-accordion-heading>
+                            <ul class="list-group" ng-repeat=" err_reg in $ctrl.items.arr_tot_vel track by $index">
+                                <li class="list-group-item">
+                                    <span class="badge">{{err_reg.nroActa}}</span>
+                                        Nro ACTA 
+                                 </li>
+                                <li class="list-group-item">
+                                    <span class="badge">{{err_reg.vel_base}}</span>
+                                        VELOCIDAD BASE
+                                 </li>
+                                 <li class="list-group-item">
+                                    <span class="badge">{{err_reg.vel_reg}}</span>
+                                        VELOCIDAD REGISTRADA
+                                 </li>
+                            </ul>
+                    </div>
+                </uib-accordion>
+                <hr>
+                <script type="text/ng-template" id="alert.html">
+        <div ng-transclude></div>
+    </script>
+    <div uib-alert ng-class="($ctrl.error)?'alert-danger':'alert-success'" style="text-align: center; font-weight: 600 !important">{{$ctrl.msg_validar}}</div>
+            </div>
+        </div>
+</div>
+<div class="modal-footer">
+
+
+    <!-- Single button -->
+    <!--<div class="btn-group" uib-dropdown is-open="status.isopen">-->
+      <!--
+      <button id="single-button" type="button" class="btn btn-primary" uib-dropdown-toggle ng-disabled="disabled">
+        Acciones <span class="caret"></span>
+      </button>
+      -->
+      <div class="btn-group btn-group-justified" role="group">
+        <div class="btn-group" role="group">
+            <button type="button" class="btn btn-lg btn-success" ng-click="guardarLote(4, $ctrl.items.arr_tot_vel)">ACEPTAR LOTE</button>
+        </div>
+         <div class="btn-group" role="group">
+            <button type="button" class="btn btn-lg btn-primary" ng-click="cerrarModal()">Cerar sin cambios</button>
+        </div>
+        <div class="btn-group" role="group">
+            <button type="button" class="btn btn-lg btn-danger" ng-click="guardarLote(2, $ctrl.items.arr_tot_vel)">RECHAZAR LOTE</button>
+        </div>
+      <!--
+      <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+        <li role="menuitem"><a href="#" ng-click="guardarLote(1,[])">Aceptar lote</a></li>
+        <li role="menuitem"><a href="#">Aceptar lote y notificar</a></li>
+        <li class="divider"></li>
+        <li role="menuitem"><a href="#" ng-click="guardarLote(3,[2,3,1])">>Rechazar lote</a></li>
+        <li role="menuitem"><a href="#">Rechazar lote y notificar</a></li>
+      </ul>
+      -->
+    </div>
+    <!--<button class="btn btn-primary" type="button" ng-click="$ctrl.cancel()">Terminar</button>-->
+</div>
