@@ -6,8 +6,9 @@
 		.controller('LoteController', LoteController);
 		
 
-        LoteController.$inject = ['$scope', '$state', 'moment', '$filter', '$uibModal', '$log', '$document', 'loteService'];
         function LoteController($scope, $state, moment, $filter, $uibModal, $log, $document, loteService) {
+        LoteController.$inject = ['$scope', '$state', 'moment', '$filter', '$uibModal', '$log', '$document', 'loteService','PROCESOS'];
+        function LoteController($scope, $state, moment, $filter, $uibModal, $log, $document, loteService, PROCESOS) {
 
                 var vm = this;
 
@@ -18,6 +19,8 @@
                 vm.isOpen = false;
 
                 vm.nro_lote_tmp;
+
+                vm.estilo_proceso_precarga = '';
 
 
 
@@ -109,6 +112,8 @@
                 vm.actualizarEstadoProceso = actualizarEstadoProceso;
                 vm.informarEstadoProceso = informarEstadoProceso;
                 vm.obtenerLote = obtenerLote
+                vm.estilo_proceso_str_largo = estilo_proceso_str_largo;
+                vm.claseEstadoLote = claseEstadoLote;
                 //metodos auxiliares
                 vm.borrarDB = borrarDB;
                 vm.crearTablaProcesosEstados = crearTablaProcesosEstados;
@@ -175,7 +180,10 @@
                         modalInstance.result.then(function (selectedItem) {
                                 vm.selected = selectedItem;
                                 console.log(selectedItem)
-                                vm.arr_hist.push(selectedItem)
+                                vm.arr_hist.push(selectedItem);
+                                //publicarHistoricoLotes([selectedItem]);
+                                //activate();
+
                         }, function () {
                                 $log.info('Modal dismissed at: ' + new Date());
                         });
@@ -280,6 +288,51 @@
                     
                 };
 
+
+                function estilo_proceso_str_largo( proceso ){
+
+                    if(proceso.id_proceso == PROCESOS.ID_PROCESO_PREVAL ){
+                        console.log('ajajajaja');
+                    }
+
+                };
+
+
+                //ng-class="(registro.id_estado_lote == 2)?'label-danger':(registro.id_estado_lote==3)?'label-warning':(registro.id_estado_lote==4)?'label-info':'label-success'"
+                function claseEstadoLote( id_estado_lote, componente ){
+
+                    var classCSS = '';
+
+                    switch( id_estado_lote ){
+                        case 1:
+                            classCSS = 'success';
+                            break;
+                        case 2:
+                            classCSS = 'danger';
+                            break;
+                        case 3:
+                            classCSS = 'warning';
+                            break;
+                        case 4:
+                            classCSS = 'info';
+                            break;
+
+                    };
+
+                    var classStyleCSS = componente + '-' + classCSS;
+
+                    //console.log(classStyleCSS)
+
+                    return ( classStyleCSS );
+
+                };
+
+
+                //---------------------------------------------------------------------------------------------
+                //---------------------------------------------------------------------------------------------
+                ////////////////////////////M E T O D O S   P U B L I C O S  BOOTSTRAP/////////////////////////
+                //---------------------------------------------------------------------------------------------
+                
 
                 $scope.alerts = [
                     //{ type: 'danger', msg: 'Oh snap! Change a few things up and try submitting again.' },
@@ -609,6 +662,26 @@
                 function publicarLoteProcesos(  lote_procesos ){
                     //console.log(lotes_procesos)
                     vm.lote_procesos = lote_procesos;
+
+                    for(var proceso in vm.lote_procesos){
+                        vm.lote_procesos[proceso].size_str_largo = '';
+                        if(vm.lote_procesos[proceso].id_proceso == PROCESOS.ID_PROCESO_PRECARGA){
+                            vm.lote_procesos[proceso].style_str_largo = {
+                                'font-size' : '10px',
+                                'aling' : 'center',
+                                'width' : '100%',
+
+                            };
+                        }
+                    };
+
+
+
+                    //if(lote_procesos.procesos.id_proceso == PROCESOS.ID_PROCESO_PREVAL ){
+                        
+                    //}
+
+
                     console.log(vm.lote_procesos)
                 };
 
@@ -618,6 +691,8 @@
                         
                         vm.arr_hist = lotes;
 
+                        return ( vm.arr_hist );
+
                 }
 
 
@@ -625,7 +700,7 @@
 
                     var clases = ['glyphicon-ok', 'glyphicon-remove', 'glyphicon-time'];
                     var clase_sel = '';
-                    console.log(id_proceso_template + ' | ' + id_proceso)
+                    //console.log(id_proceso_template + ' | ' + id_proceso)
 
                     /*switch(id_proceso){
                         case 100: '';
