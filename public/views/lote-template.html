@@ -116,11 +116,13 @@
 			  	<div style="width:100%; border-bottom:solid 1px lightgray; margin-bottom:5px;">
             		<h5>Procesados HOY</h5>
             	</div>
+
+            	ng-class="(registro.id_estado_lote == 2)?'label-danger':(registro.id_estado_lote==3)?'label-warning':(registro.id_estado_lote==4)?'label-info':'label-success'"
             	-->
 			<uib-accordion close-others="true" style="font-size: 12px !important;">
 				<div uib-accordion-group class="panel " ng-class="(registro.id_estado_lote == 2)?'panel-danger':(registro.id_estado_lote == 3)?'panel-warning':(registro.id_estado_lote == 4)?'panel-info':'panel-success'" is-disabled="false" ng-repeat="registro in vm.arr_hist | filter:busqueda" ng-click="vm.obtenerLote(registro.nro_lote)">
                       <uib-accordion-heading style="cursor:pointer" >
-                         <h5 ng-show="true" class="label " ng-class="(registro.id_estado_lote == 2)?'label-danger':(registro.id_estado_lote == 3)?'label-warning':(registro.id_estado_lote == 4)?'label-primary':'label-success'" style="font-size: 10px !important;" >LOTE {{registro.nro_lote}}</h5> <h5 ng-show="true" class="label" ng-class="(registro.id_estado_lote == 2)?'label-danger':(registro.id_estado_lote==3)?'label-warning':(registro.id_estado_lote==4)?'label-info':'label-success'" style="font-size: 10px !important;">{{registro.estado_lote}}</h5><i ng-style="{'color':(registro.id_estado_lote == 2)?'red':(registro.id_estado_lote == 3)?'orange':(registro.id_estado_lote==4)?'#00b3b3':'green'}" class="glyphicon pull-right" ng-class="(registro.id_estado_lote == 2)?'glyphicon-remove':(registro.id_estado_lote == 3)?'glyphicon-exclamation-sign':(registro.id_estado_lote==4)?'glyphicon-time':'glyphicon-ok'"></i><span class="text-info pull-right" style="font-size: 11px; margin-right:10px;" am-time-ago="registro.fecha_validado"></span>
+                         <h5 class="label " ng-class="vm.claseEstadoLote(registro.id_estado_lote, 'label')" style="font-size: 10px !important;">LOTE {{registro.nro_lote}}</h5> <h5 class="label" ng-class="vm.claseEstadoLote(registro.id_estado_lote, 'label')" style="font-size: 10px !important;">{{registro.estado_lote}}</h5><i ng-style="{'color':(registro.id_estado_lote == 2)?'red':(registro.id_estado_lote == 3)?'orange':(registro.id_estado_lote==4)?'#00b3b3':'green'}" class="glyphicon pull-right" ng-class="(registro.id_estado_lote == 2)?'glyphicon-remove':(registro.id_estado_lote == 3)?'glyphicon-exclamation-sign':(registro.id_estado_lote==4)?'glyphicon-time':'glyphicon-ok'"></i><span class="text-info pull-right" style="font-size: 11px; margin-right:10px;" am-time-ago="registro.fecha_validado"></span>
                       </uib-accordion-heading>    
 							 <div class="btn-group" uib-dropdown>
 							      <button id="single-button-lote" type="button" class="btn btn-sm btn-primary" uib-dropdown-toggle ng-disabled="disabled">
@@ -166,15 +168,17 @@
 				                            </ul>
                                  		</div>
                                  		<div class="btn-group btn-group-justified" role="group">
-									        <div class="btn-group" role="group">
-									            <button type="button" class="btn btn-sm btn-default">PREVAL</button>
+									        <div class="btn-group" role="group" ng-repeat="proceso in vm.lote_procesos track by $index">
+									            <button type="button" class="btn btn-sm btn-default" ng-style="proceso.style_str_largo">{{proceso.proceso}}</button>
 									        </div>
+									        <!--
 									        <div class="btn-group" role="group">
 									            <button type="button" class="btn btn-sm btn-default">SIJAI</button>
 									        </div>
 									        <div class="btn-group" role="group">
 									            <button type="button" class="btn btn-sm btn-default">CALIDAD</button>
 									        </div>
+									        -->
 									    </div>
 									    <div class="btn-group btn-group-justified" role="group">
 									        <div class="btn-group" role="group" ng-repeat="proceso in vm.lote_procesos track by $index" uib-dropdown>
@@ -355,7 +359,7 @@
           <li role="menuitem"><a href="#" class="text-danger" style="font-weight: bold"><i class="glyphicon glyphicon-remove" style="font-size:16px;margin-right:10px; color: red"></i>Rechazar lote</a></li>
           <li class="divider"></li>
           <li role="menuitem"><a href="#" class="text-danger" style="font-weight: 700"><i class="glyphicon glyphicon-list-alt
-" style="font-size:16px;margin-right:10px; color: black"></i>Ver registros con errores</a></li>
+" style="font-size:16px;margin-right:10px; color: black"></i>Ver registros rechazados</a></li>
           
         </ul>
     </script>
