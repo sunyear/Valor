@@ -6,8 +6,8 @@
     .controller('ModalInstanceCtrl', ModalInstanceCtrl);
     
 
-        ModalInstanceCtrl.$inject = ['$scope', '$uibModalInstance', 'items', 'loteService'];
-        function ModalInstanceCtrl($scope, $uibModalInstance, items, loteService) {
+        ModalInstanceCtrl.$inject = ['$scope', '$uibModalInstance', 'items', 'loteService','ESTADOS_LOTES'];
+        function ModalInstanceCtrl($scope, $uibModalInstance, items, loteService, ESTADOS_LOTES) {
 
                 var $ctrl = this;
 
@@ -31,7 +31,7 @@
                   $uibModalInstance.dismiss('cancel');
                 };
 
-                $scope.guardarLote = function(lote_estado, err_tipo){
+                $scope.guardarLote = function( id_estado_lote, items ){
 
                   /*
                   var estado_calidad = 3; //en espera para ser rechazado o aceptado
@@ -60,6 +60,8 @@
                     .then( actualizarVista )
                     */
 
+                    //console.log(items)
+
                     var id_proceso = 100; //PROCESO PREVAL
                     var m = moment(items.fecha_lote);
 
@@ -70,17 +72,18 @@
                       fecha_validado: '20161109',
                       nombre_archivo_csv: items.nom_csv,
                       id_proceso: id_proceso,
-                      id_estado_lote: lote_estado
-
+                      id_estado_lote: id_estado_lote,
+                      estado_lote: ESTADOS_LOTES[id_estado_lote]
                     };
 
+                    //onsole.log(LOTE_ESTADOS[id_lote_estado])
                   
                   
                   loteService
                     .pushLote( lote )
                     .then( actualizarVista );
                   
-                  console.log(moment(1318874398806).unix())
+                  //console.log(moment(1318874398806).unix())
                   $uibModalInstance.close(lote);
 
                 };
