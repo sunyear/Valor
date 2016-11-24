@@ -103,15 +103,29 @@
         Acciones <span class="caret"></span>
       </button>
       -->
-      <div class="btn-group btn-group-justified" role="group">
+      <div style="text-align: center">
         <div class="btn-group" role="group">
-            <button type="button" class="btn btn-lg btn-success" ng-click="guardarLote(4, $ctrl.items.arr_tot_vel)">ACEPTAR LOTE</button>
+          <div class="btn-group" uib-dropdown>
+            <button id="split-button" type="button" class="btn btn-lg btn-success" ng-click="guardarLote(1, $ctrl.items)">ACEPTAR LOTE</button>
+            <button type="button" class="btn btn-lg btn-success" uib-dropdown-toggle>
+              <span class="caret"></span>
+              <span class="sr-only">Split button!</span>
+            </button>
+            <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="split-button">
+              <li role="menuitem"><a href="#" ng-click="guardarLote(3, $ctrl.items)">Observar lote</a></li>
+            </ul>
+          </div>
         </div>
+        <!--
+        <div class="btn-group" role="group">
+            <button type="button" class="btn btn-lg btn-success" ng-click="guardarLote(4, $ctrl.items)">ACEPTAR LOTE</button>
+        </div>
+        -->
          <div class="btn-group" role="group">
             <button type="button" class="btn btn-lg btn-primary" ng-click="cerrarModal()">Continuar</button>
         </div>
         <div class="btn-group" role="group">
-            <button type="button" class="btn btn-lg btn-danger" ng-click="guardarLote(2, $ctrl.items.arr_tot_vel)">RECHAZAR LOTE</button>
+            <button type="button" class="btn btn-lg btn-danger" ng-click="guardarLote(2, $ctrl.items)">RECHAZAR LOTE</button>
         </div>
       <!--
       <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
