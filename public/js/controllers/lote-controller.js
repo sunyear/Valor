@@ -6,7 +6,6 @@
 		.controller('LoteController', LoteController);
 		
 
-        function LoteController($scope, $state, moment, $filter, $uibModal, $log, $document, loteService) {
         LoteController.$inject = ['$scope', '$state', 'moment', '$filter', '$uibModal', '$log', '$document', 'loteService','PROCESOS'];
         function LoteController($scope, $state, moment, $filter, $uibModal, $log, $document, loteService, PROCESOS) {
 
