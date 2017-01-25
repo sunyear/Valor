@@ -7,7 +7,8 @@
             'ui.router',
             'angularMoment',
             'ui.bootstrap',
-            'LocalForageModule'
+            'LocalForageModule',
+            'lumx'
             // load other modules selected during generation
         ]
     )

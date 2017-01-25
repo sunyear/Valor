@@ -25,104 +25,58 @@
 
 </style>
 
-<div style="width:100%; display:inline-block;">
-	<div style="display: inline-block; width:100%; height:auto">
+
+<div class="panel panel-primary" style="width:100%; margin-top:5px">
+	<div class="panel-heading">
+	     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" >
+	     	<form class="navbar-form navbar-left" style="width: 100%">
+		        <div class="form-group form-group-sm pull-left" style="width: 100%">
+		          <input type="text" class="form-control pull-left" ng-model="busqueda.nroLote" placeholder="Lote Nro" style="width: 100%">
+		        </div>
+	        <!--<button type="submit" class="btn btn-sm btn-default">Submit</button>-->
+	      	</form>
+	      </div>
 	</div>
-	<div style="position: relative; float: left; height:auto; width:30%;">
-		<div class="panel panel-primary" style="width:100%; height: 700px;margin-top:5px">
-		<div class="panel-heading">
-		    <h3 class="panel-title">Historial</h3>
-		</div>
-		<div class="panel-body">
+	<div class="panel-body">
+					<!-- Collect the nav links, forms, and other content for toggling -->
 
-				<nav class="navbar navbar-default">
-			  <div class="container-fluid">
-			    <!-- Brand and toggle get grouped for better mobile display -->
-			    <!--
-			    <div class="navbar-header">
-			  
-			      <a class="navbar-brand" href="#">Brand</a>
-			    </div>
-			    -->
-
-			    <!-- Collect the nav links, forms, and other content for toggling -->
-			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			      <form class="navbar-form navbar-left">
-			        <div class="form-group form-group-sm pull-left">
-			          <input type="text" class="form-control pull-left" ng-model="busqueda.nroLote" placeholder="Lote Nro">
-			        </div>
-			        <!--<button type="submit" class="btn btn-sm btn-default">Submit</button>-->
-			      </form>
-			      <ul class="nav navbar-nav navbar-right pull-right" style="font-size: 13px !important;">
-
-
-			      	<!-- Single button using template-url -->
-				    <div class="btn-group" uib-dropdown auto-close="disabled" style="margin-top: 8px;">
-				      <button id="button-template-url" type="button" class="btn btn-default" uib-dropdown-toggle ng-disabled="disabled">
-				        Filtros <span class="caret"></span>
-				      </button>
-				      <ul class="dropdown-menu" uib-dropdown-menu template-url="dropdown.html" aria-labelledby="button-template-url">
-				      </ul>
-				    </div>
-
-				    <!--
-			        <div class="btn-group" uib-dropdown style="margin-top: 8px;">
-							      <button id="single-button-lote" type="button" class="btn btn-sm btn-default" uib-dropdown-toggle ng-disabled="disabled">
-							        Filtros <span class="caret"></span>
-							      </button>
-							      <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button-lote">
-
-							        <h6 class="dropdown-header">PREVAL</h6>
-							        <li role="menuitem"><a href="#">Todos</a></li>
-							        <li role="menuitem"><a href="#">Aceptados</a></li>
-							        <li role="menuitem"><a href="#">Rechazados</a></li>
-
-							        <li class="divider"></li>
-							        <h6 class="dropdown-header">CALIDAD</h6>
-							        <li role="menuitem"><a href="#">Todos</a></li>
-							        <li role="menuitem"><a href="#">Aceptados</a></li>
-							        <li role="menuitem"><a href="#">Rechazados</a></li>
-							        <li class="divider"></li>
-							        <h6 class="dropdown-header">SIJAI</h6>
-							        <li role="menuitem"><a href="#">Todos</a></li>
-							        <li role="menuitem"><a href="#">Aceptados</a></li>
-							        <li role="menuitem"><a href="#">Rechazados</a></li>
-							        <li>
-							        	<div class="btn-group">
-									        <label class="btn btn-primary" ng-model="checkModel.left" active-class="glyphicon glyphicon-ok-circle
-" uib-btn-checkbox></label>
-									        <label class="btn btn-primary" ng-model="checkModel.middle" uib-btn-checkbox>Middle</label>
-									        <label class="btn btn-primary" ng-model="checkModel.right" uib-btn-checkbox>Right</label>
-									    </div>
-
-									    
-    <div class="btn-group" uib-dropdown>
-      <button id="button-template-url" type="button" class="btn btn-primary" uib-dropdown-toggle ng-disabled="disabled">
-        Dropdown using template <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu" uib-dropdown-menu template-url="dropdown.html" aria-labelledby="button-template-url">
-      </ul>
-    </div>
-							        </li>
-							        
+				<div style="position: relative; float: left; height:auto; width:20%;">
+					<div class="panel panel-default" style="width:100%; height: 700px;margin-top:5px">
+						<div class="panel-heading">
+							<div style="width:50%;position: relative; left:25%">
+						    	<button type="button" class="btn btn-danger btn-lg btn-block" ng-click="vm.cargarLote()">Cargar LOTE</button>
 						    </div>
-			      </ul>
-			      -->
-			    </div><!-- /.navbar-collapse -->
-			  </div><!-- /.container-fluid -->
-			</nav>
+						</div>
+						<div class="panel-body">
+								<div class="list-group">
+								  <a href="#" class="list-group-item">Lotes/Actas</a>
+								  <a href="#" class="list-group-item">Imposiciones</a>
+								  <a href="#" class="list-group-item">Novedades</a>
+								</div>
+						</div>
+					</div>
+				</div>
+				<div style="position: relative; float: right; height:auto; width:80%;">
+					<div class="panel panel-default" style="width:100%; height: 700px;margin-top:5px">
+						<div class="panel-heading">
+						    <h3 class="panel-title">Historial</h3>
+						</div>
+						<div class="panel-body">
 
-				<!--
-			  	<div style="width:100%; border-bottom:solid 1px lightgray; margin-bottom:5px;">
-            		<h5>Procesados HOY</h5>
-            	</div>
 
-            	ng-class="(registro.id_estado_lote == 2)?'label-danger':(registro.id_estado_lote==3)?'label-warning':(registro.id_estado_lote==4)?'label-info':'label-success'"
-            	-->
-			<uib-accordion close-others="true" style="font-size: 12px !important;">
+
+							<form name="outerForm" class="tab-form-demo">
+							    <uib-tabset active="activeForm">
+							      <uib-tab index="0" heading="Todos los lotes" >
+							        <ng-form name="nestedForm">
+							          <div class="form-group" style="margin-top: 20px">
+							            <input type="text" class="form-control" required ng-model="model.name"/>
+							          </div>
+							        </ng-form>
+							        <uib-accordion close-others="true" style="font-size: 12px !important;">
 				<div uib-accordion-group class="panel " ng-class="(registro.id_estado_lote == 2)?'panel-danger':(registro.id_estado_lote == 3)?'panel-warning':(registro.id_estado_lote == 4)?'panel-info':'panel-success'" is-disabled="false" ng-repeat="registro in vm.arr_hist | filter:busqueda" ng-click="vm.obtenerLote(registro.nro_lote)">
                       <uib-accordion-heading style="cursor:pointer" >
-                         <h5 class="label " ng-class="vm.claseEstadoLote(registro.id_estado_lote, 'label')" style="font-size: 10px !important;">LOTE {{registro.nro_lote}}</h5> <h5 class="label" ng-class="vm.claseEstadoLote(registro.id_estado_lote, 'label')" style="font-size: 10px !important;">{{registro.estado_lote}}</h5><i ng-style="{'color':(registro.id_estado_lote == 2)?'red':(registro.id_estado_lote == 3)?'orange':(registro.id_estado_lote==4)?'#00b3b3':'green'}" class="glyphicon pull-right" ng-class="(registro.id_estado_lote == 2)?'glyphicon-remove':(registro.id_estado_lote == 3)?'glyphicon-exclamation-sign':(registro.id_estado_lote==4)?'glyphicon-time':'glyphicon-ok'"></i><span class="text-info pull-right" style="font-size: 11px; margin-right:10px;" am-time-ago="registro.fecha_validado"></span>
+                         <h5 class="label " ng-class="vm.claseEstadoLote(registro.id_estado_lote, 'label')" style="font-size: 10px !important;">LOTE {{registro.nro_lote}}</h5> <h5 class="label" ng-class="vm.claseEstadoLote(registro.id_estado_lote, 'label')" style="font-size: 10px !important;">{{registro.estado_lote}}</h5> <h5 class="label" ng-class="vm.claseEstadoLote(registro.id_estado_lote, 'label')" style="font-size: 10px !important;">{{registro.proceso}}</h5><i ng-style="{'color':(registro.id_estado_lote == 2)?'red':(registro.id_estado_lote == 3)?'orange':(registro.id_estado_lote==4)?'#00b3b3':'green'}" class="glyphicon pull-right" ng-class="(registro.id_estado_lote == 2)?'glyphicon-remove':(registro.id_estado_lote == 3)?'glyphicon-exclamation-sign':(registro.id_estado_lote==4)?'glyphicon-time':'glyphicon-ok'"></i><span class="text-info pull-right" style="font-size: 11px; margin-right:10px;" am-time-ago="registro.fecha_validado"></span>
                       </uib-accordion-heading>    
 							 <div class="btn-group" uib-dropdown>
 							      <button id="single-button-lote" type="button" class="btn btn-sm btn-primary" uib-dropdown-toggle ng-disabled="disabled">
@@ -183,7 +137,7 @@
 									    <div class="btn-group btn-group-justified" role="group">
 									        <div class="btn-group" role="group" ng-repeat="proceso in vm.lote_procesos track by $index" uib-dropdown>
 
-									        <button id="button-template-url" type="button" class="btn btn-sm" uib-dropdown-toggle ng-disabled="disabled" ng-class="(proceso.estado_lote_proceso==1)?'btn-success':(proceso.estado_lote_proceso==2)?'btn-danger':'btn-default'"><i class="glyphicon " ng-class="(proceso.estado_lote_proceso==1)?'glyphicon-ok':(proceso.estado_lote_proceso==2)?'glyphicon-remove':'glyphicon-time'"></i>
+									        <button id="button-template-url" type="button" class="btn btn-sm" uib-dropdown-toggle ng-disabled="disabled" ng-class="(proceso.estado_lote_proceso==1)?'btn-success':(proceso.estado_lote_proceso==2)?'btn-danger':'btn-info'"><i class="glyphicon " ng-class="(proceso.estado_lote_proceso==1)?'glyphicon-ok':(proceso.estado_lote_proceso==2)?'glyphicon-remove':'glyphicon-time'"></i>
 										      </button>
 										      <ul class="dropdown-menu" uib-dropdown-menu template-url="dropdown_proc.html" aria-labelledby="button-template-url">
 										      </ul>
@@ -228,9 +182,37 @@
                     -->
                     
 			</uib-accordion>
-		</div>
+							      </uib-tab>
+							      <uib-tab index="1" heading="Calidad">
+							        <ng-form name="nestedForm1">
+							          <div class="form-group">
+							            <label>Lote</label>
+							            <input type="text" class="form-control" required ng-model="model.name"/>
+							          </div>
+							        </ng-form>
+							      </uib-tab>
+							      <uib-tab index="2" heading="Prevalidacion">
+							        Some Tab Content
+							      </uib-tab>
+							      <uib-tab index="3" heading="Precarga">
+							        More Tab Content
+							      </uib-tab>
+							    </uib-tabset>
+							  </form>
+
+
+
+						</div>
+					</div>
+				</div>
+
+
 	</div>
-	</div>
+</div>
+
+
+
+
 	<div style="position: relative; float: left; height:auto;width: 70%;">
 
 	<div class="panel panel-primary" style="width:100%; margin-top:5px">
@@ -284,6 +266,9 @@
 				    <h3 class="panel-title">Datos del CSV</h3>
 			</div>
 			<div class="panel-body">
+			<div class="p+ pt0">
+			    <lx-file-input lx-label="Seleccionar CSV..." lx-callback="vm.manageFile(newFile)"></lx-file-input>
+			</div>
 				<label for="exampleInputFile">Cargar archivo CSV</label>
 			<input type="file" id="exampleInputFile" on-read-file="leerCSV(contents)">
 				<ul class="list-group">

@@ -113,12 +113,18 @@
                 vm.obtenerLote = obtenerLote
                 vm.estilo_proceso_str_largo = estilo_proceso_str_largo;
                 vm.claseEstadoLote = claseEstadoLote;
+                vm.cargarLote = cargarLote;
                 //metodos auxiliares
                 vm.borrarDB = borrarDB;
                 vm.crearTablaProcesosEstados = crearTablaProcesosEstados;
                 //fin metodos auxiliares
 
                 //METODOS PUBLICOS
+
+
+                function cargarLote(){
+                    vm.asistenteValidacion();
+                }
 
 
                 vm.open = function (size, parentSelector) {
@@ -439,6 +445,51 @@
                 //METODOS PRIVADOS
                 //---
 
+
+
+
+                vm.asistenteValidacion = function (size, parentSelector) {
+
+                        var parentElem = parentSelector ? 
+                        angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+                        var modalInstance = $uibModal.open({
+                                animation: true,
+                                ariaLabelledBy: 'modal-title',
+                                ariaDescribedBy: 'modal-body',
+                                templateUrl: './views/asistente-template.html',
+                                controller: 'AsistenteController',
+                                controllerAs: '$aCtrl',
+                                size: size,
+                                appendTo: parentElem,
+                                resolve: {
+                                        items: function () {
+
+
+                                                var obj = {
+                                                        //propiedades generales
+                                                }
+
+                                                return ( obj );
+                                        }
+                                }
+                        });
+
+                        modalInstance.result.then(function (selectedItem) {
+                                vm.selected = selectedItem;
+                                console.log(selectedItem)
+                                vm.arr_hist.push(selectedItem);
+                                //publicarHistoricoLotes([selectedItem]);
+                                //activate();
+
+                        }, function () {
+                                $log.info('Modal dismissed at: ' + new Date());
+                        });
+                };
+
+
+
+
+
                 function validarRegistro( registro ){
 
                         aRegistro = registro.split(';');
@@ -689,6 +740,7 @@
                         //console.log('asd')
                         
                         vm.arr_hist = lotes;
+                        console.log(lotes)
 
                         return ( vm.arr_hist );
 
